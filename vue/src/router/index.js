@@ -2,19 +2,34 @@ import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
     {
-      path: "/auth",
-      redirect: "/auth/login",
-      component: ()=>import("@/layouts/Auth.vue"),
-      children: [
-        {
-          path: "/auth/login",
-          component: ()=>import("@/views/auth/Login.vue"),
-        },
-        {
-          path: "/auth/register",
-          component: ()=>import("@/views/auth/Register.vue"),
-        },
-      ],
+        path: "/",
+        redirect: "/home",
+        component: ()=>import('@/layouts/Default.vue'),
+        children: [
+            {
+                path: "/home",
+                name: "Home",
+                component: ()=>import('@/views/Index.vue'),
+            },
+            {
+                path: "/todo",
+                name: "Todo",
+                component: ()=>import('@/views/Todo.vue'),
+            },
+        ]
+    },
+
+    {
+        path: "/auth",
+        redirect: "/signin",
+        component: ()=>import('@/layouts/Auth.vue'),
+        children: [
+            {
+                path: "/signin",
+                name: "SignIn",
+                component: ()=>import('@/views/Sigin.vue'),
+            }
+        ]
     },
 ];
 
